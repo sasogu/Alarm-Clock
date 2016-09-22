@@ -60,16 +60,15 @@ public class AlarmClock {
 				if(alarm.equals(time)){
 					alarmAlert(time, playlist);
 				}
-				//boolean alreadyExecutedOnce = false;
 				while(!alarm.equals(time)){
 					GregorianCalendar calendar = (GregorianCalendar) Calendar.getInstance();
 					String updatedTime = dateFormat.format(calendar.getTime());
 					System.out.println("Current time is " + updatedTime);
     				Thread.sleep(10000);
-    				//if(alarm.equals(updatedTime) && alreadyExecutedOnce){
+
         			if(alarm.equals(updatedTime)){
     					alarmAlert(updatedTime, playlist);
-    					//alreadyExecutedOnce = true; 
+    					Thread.sleep(60000); 
     				}
 				}
 			}else{
