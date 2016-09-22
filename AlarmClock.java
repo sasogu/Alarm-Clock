@@ -57,18 +57,20 @@ public class AlarmClock {
 				DateFormat dateFormat = new SimpleDateFormat("HH:mm");
 				GregorianCalendar cal = (GregorianCalendar) Calendar.getInstance();
 				String time = dateFormat.format(cal.getTime());
-				String updatedTime = "";
 				if(alarm.equals(time)){
-					System.out.println("Wake up! Wake up! Buzz Buzz");
-					int index = new Random().nextInt(playlist.size());
-					String url = playlist.get(index); 
-					openWebPage(url);
+					alarmAlert(time, playlist);
 				}
+				//boolean alreadyExecutedOnce = false;
 				while(!alarm.equals(time)){
-					System.out.println("Current time is " + time);
-					updatedTime = dateFormat.format(cal.getTime());
-					Thread.sleep(30000);
-
+					GregorianCalendar calendar = (GregorianCalendar) Calendar.getInstance();
+					String updatedTime = dateFormat.format(calendar.getTime());
+					System.out.println("Current time is " + updatedTime);
+    				Thread.sleep(10000);
+    				//if(alarm.equals(updatedTime) && alreadyExecutedOnce){
+        			if(alarm.equals(updatedTime)){
+    					alarmAlert(updatedTime, playlist);
+    					//alreadyExecutedOnce = true; 
+    				}
 				}
 			}else{
 				System.out.println("User did not enter correct time format.");
@@ -77,6 +79,7 @@ public class AlarmClock {
 	}
 
 
+	
 	private static boolean checkValidTime(String time) {
 		SimpleDateFormat df = new SimpleDateFormat("HH:mm");
 		df.setLenient(false);
@@ -87,6 +90,15 @@ public class AlarmClock {
 			return false;
 		}
 		return true;
+	}
+	
+	private static void alarmAlert(String updatedTime, ArrayList<String> playlist){
+
+			System.out.println("Wake up! Wake up! Buzz Buzz");
+			int index = new Random().nextInt(playlist.size());
+			String url = playlist.get(index); 
+			openWebPage(url);
+		
 	}
 	
 	public static void openWebPage(String link){
