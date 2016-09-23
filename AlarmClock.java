@@ -64,12 +64,12 @@ public class AlarmClock {
 					GregorianCalendar calendar = (GregorianCalendar) Calendar.getInstance();
 					String updatedTime = dateFormat.format(calendar.getTime());
 					System.out.println("Current time is " + updatedTime);
-    				Thread.sleep(10000);
+    					Thread.sleep(10000);
 
-        			if(alarm.equals(updatedTime)){
-    					alarmAlert(updatedTime, playlist);
-    					Thread.sleep(60000); 
-    				}
+	        			if(alarm.equals(updatedTime)){
+	    					alarmAlert(updatedTime, playlist);
+	    					Thread.sleep(60000); 
+	    				}
 				}
 			}else{
 				System.out.println("User did not enter correct time format.");
@@ -93,10 +93,10 @@ public class AlarmClock {
 	
 	private static void alarmAlert(String updatedTime, ArrayList<String> playlist){
 
-			System.out.println("Wake up! Wake up! Buzz Buzz");
-			int index = new Random().nextInt(playlist.size());
-			String url = playlist.get(index); 
-			openWebPage(url);
+		System.out.println("Wake up! Wake up! Buzz Buzz");
+		int index = new Random().nextInt(playlist.size());
+		String url = playlist.get(index); 
+		openWebPage(url);
 		
 	}
 	
